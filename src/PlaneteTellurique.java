@@ -8,7 +8,7 @@ public class PlaneteTellurique extends Planete implements Habitable{
         super(nom);
     }
 
-    public Vaisseau accueillirVaisseau(Vaisseau nouveauVaisseau){
+    public void accueillirVaisseau(Vaisseau nouveauVaisseau){
 
         if (nouveauVaisseau instanceof VaisseauDeGuerre){
             ((VaisseauDeGuerre)nouveauVaisseau).desactiverArmes();
@@ -16,11 +16,7 @@ public class PlaneteTellurique extends Planete implements Habitable{
 
         totalVisiteurs+=nouveauVaisseau.nbPassagers;
 
-        Vaisseau vaisseauPrecedent=vaisseauAccoste;
-
         vaisseauAccoste=nouveauVaisseau;
-
-        return vaisseauPrecedent;
 
     }
 }
