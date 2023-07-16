@@ -22,19 +22,19 @@ public class HelloUniverse {
         PlaneteGazeuse neptune = new PlaneteGazeuse("Neptune");
         neptune.diametre = 49532;
 
-        Vaisseau chasseur=new VaisseauDeGuerre("CHASSEUR");
-        chasseur.nbPassagers=2;
-        Vaisseau fregate=new VaisseauDeGuerre("FREGATE");
-        fregate.nbPassagers=12;
-        Vaisseau croiseur=new VaisseauDeGuerre("CROISEUR");
-        croiseur.nbPassagers=12;
-        Vaisseau cargo=new VaisseauCivil("CARGO");
-        cargo.nbPassagers=15;
-        Vaisseau vaisseauMonde=new VaisseauCivil("VAISSEAU-MONDE");
-        vaisseauMonde.nbPassagers=79;
+        Vaisseau chasseur = new VaisseauDeGuerre("CHASSEUR");
+        chasseur.nbPassagers = 2;
+        Vaisseau fregate = new VaisseauDeGuerre("FREGATE");
+        fregate.nbPassagers = 12;
+        Vaisseau croiseur = new VaisseauDeGuerre("CROISEUR");
+        croiseur.nbPassagers = 12;
+        Vaisseau cargo = new VaisseauCivil("CARGO");
+        cargo.nbPassagers = 15;
+        Vaisseau vaisseauMonde = new VaisseauCivil("VAISSEAU-MONDE");
+        vaisseauMonde.nbPassagers = 79;
         Vaisseau nouveauVaisseau = null;
 
-        System.out.println("Quel type de vaisseau souhaitez-vous manipuler ?");
+        /*System.out.println("Quel type de vaisseau souhaitez-vous manipuler ?");
         Scanner sc = new Scanner(System.in);
          switch(sc.nextLine()) {
              case "CHASSEUR":
@@ -85,15 +85,37 @@ public class HelloUniverse {
         System.out.println("Quel tonnage souhaitez-vous emporter ?");
         int tonnageChoisi = sc.nextInt();
         System.out.println("Le " + Objects.requireNonNull(nouveauVaisseau).type + " a rejeté : "+nouveauVaisseau.emporterCargaison(tonnageChoisi)+" tonnes.");
+         */
 
-        Atmosphere atmosphereUranus=new Atmosphere();
-        atmosphereUranus.tauxHydrogene= Float.valueOf(83);
-        atmosphereUranus.tauxHelium= Float.valueOf(15);
-        atmosphereUranus.tauxMethane=2.5f;
-        atmosphereUranus.tauxAzote=Float.valueOf(0);
-        uranus.atmosphere=atmosphereUranus;
+        Atmosphere atmosphereUranus = new Atmosphere();
+        atmosphereUranus.tauxHydrogene = new Float(83f);
+        atmosphereUranus.tauxHelium = new Float(15f);
+        atmosphereUranus.tauxMethane = new Float(2.5f);
+        atmosphereUranus.tauxAzote = new Float(0.0f);
+        uranus.atmosphere = atmosphereUranus;
 
+        System.out.println("L'atmosphère de Uranus est composée :");
 
-
+        if (uranus.atmosphere.tauxHelium != null) {
+            System.out.println("A " + uranus.atmosphere.tauxHelium + "% d'Helium.");
+        }
+        if (uranus.atmosphere.tauxHydrogene != null) {
+            System.out.println("A " + uranus.atmosphere.tauxHydrogene + "% d'Hydrogène.");
+        }
+        if (uranus.atmosphere.tauxAzote != null) {
+            System.out.println("A " + uranus.atmosphere.tauxAzote + "% d'Azote.");
+        }
+        if (uranus.atmosphere.tauxArgon != null) {
+            System.out.println("A " + uranus.atmosphere.tauxArgon + "% d'Argon.");
+        }
+        if (uranus.atmosphere.tauxDioxydeDeCarbone != null) {
+            System.out.println("A " + uranus.atmosphere.tauxDioxydeDeCarbone + "% de Dioxyde de Carbone.");
+        }
+        if (uranus.atmosphere.tauxSodium != null) {
+            System.out.println("A " + uranus.atmosphere.tauxSodium + "% de Sodium.");
+        }
+        if (uranus.atmosphere.tauxMethane != null) {
+            System.out.println("A " + uranus.atmosphere.tauxMethane + "% de Methane.");
+        }
     }
 }
