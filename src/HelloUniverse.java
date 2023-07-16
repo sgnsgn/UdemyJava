@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class HelloUniverse {
@@ -21,43 +22,102 @@ public class HelloUniverse {
         PlaneteGazeuse neptune = new PlaneteGazeuse("Neptune");
         neptune.diametre = 49532;
 
-        Vaisseau chasseur=new VaisseauDeGuerre("CHASSEUR");
-        chasseur.blindage=156;
-        chasseur.resistanceDuBouclier=2;
+        Vaisseau chasseur = new VaisseauDeGuerre("CHASSEUR");
+        chasseur.nbPassagers = 2;
+        Vaisseau fregate = new VaisseauDeGuerre("FREGATE");
+        fregate.nbPassagers = 12;
+        Vaisseau croiseur = new VaisseauDeGuerre("CROISEUR");
+        croiseur.nbPassagers = 12;
+        Vaisseau cargo = new VaisseauCivil("CARGO");
+        cargo.nbPassagers = 15;
+        Vaisseau vaisseauMonde = new VaisseauCivil("VAISSEAU-MONDE");
+        vaisseauMonde.nbPassagers = 79;
+        /*
 
-        Vaisseau vaisseauMonde=new VaisseauCivil("VAISSEAU-MONDE");
-        vaisseauMonde.blindage=4784;
-        vaisseauMonde.resistanceDuBouclier=30;
+        Vaisseau nouveauVaisseau = null;
 
-        vaisseauMonde.activerBouclier();
-        chasseur.activerBouclier();
-        ((VaisseauDeGuerre)chasseur).attaque(vaisseauMonde, "laser photonique", 3);
-        vaisseauMonde.desactiverBouclier();
+        System.out.println("Quel type de vaisseau souhaitez-vous manipuler ?");
+        Scanner sc = new Scanner(System.in);
+         switch(sc.nextLine()) {
+             case "CHASSEUR":
+                 nouveauVaisseau = chasseur;
+                 break;
+             case "FREGATE":
+                 nouveauVaisseau = fregate;
+                 break;
+             case "CROISEUR":
+                 nouveauVaisseau = croiseur;
+                 break;
+             case "CARGO":
+                 nouveauVaisseau = cargo;
+                 break;
+             case "VAISSEAU-MONDE":
+                 nouveauVaisseau = vaisseauMonde;
+                 break;
+         }
 
-        System.out.println("Le Vaisseau-Monde dispose encore de "+vaisseauMonde.resistanceDuBouclier+" minutes de protection grâce à son bouclier.");
-        System.out.println("Le Vaisseau-Monde dispose encore d'un blindage de valeur "+vaisseauMonde.blindage+".");
+        System.out.println("Sur quelle planete souhaitez-vous atterir ?");
+        switch(sc.nextLine()) {
+            case "Mercure":
+                mercure.accueillirVaisseau(nouveauVaisseau);
+                break;
+            case "Venus":
+                venus.accueillirVaisseau(nouveauVaisseau);
+                break;
+            case "Terre":
+                terre.accueillirVaisseau(nouveauVaisseau);
+                break;
+            case "Mars":
+                mars.accueillirVaisseau(nouveauVaisseau);
+                break;
+            case "Jupiter":
+                System.out.println("Impossible d'accueillir des vaisseaux sur Jupiter");
+                break;
+            case "Saturne":
+                System.out.println("Impossible d'accueillir des vaisseaux sur Saturne");
+                break;
+            case "Uranus":
+                System.out.println("Impossible d'accueillir des vaisseaux sur Uranus");
+                break;
+            case "Neptune":
+                System.out.println("Impossible d'accueillir des vaisseaux sur Neptune");
+                break;
+        }
 
-        mars.accueillirVaisseau(vaisseauMonde);
-        mars.accueillirVaisseau(chasseur);
+        System.out.println("Quel tonnage souhaitez-vous emporter ?");
+        int tonnageChoisi = sc.nextInt();
+        System.out.println("Le " + Objects.requireNonNull(nouveauVaisseau).type + " a rejeté : "+nouveauVaisseau.emporterCargaison(tonnageChoisi)+" tonnes.");
+         */
 
-        Vaisseau chasseur20=new VaisseauDeGuerre("CHASSEUR");
-        terre.accueillirVaisseau(chasseur20);
-        System.out.println("Le chasseur a rejeté : "+chasseur20.emporterCargaison(20)+" tonnes.");
-        Vaisseau fregate57=new VaisseauDeGuerre("FREGATE");
-        fregate57.nbPassagers=100;
-        terre.accueillirVaisseau(fregate57);
-        System.out.println("La frégate a rejeté : "+fregate57.emporterCargaison(45)+" tonnes.");
-        System.out.println("La frégate a rejeté : "+fregate57.emporterCargaison(12)+" tonnes.");
-        Vaisseau fregate30=new VaisseauDeGuerre("FREGATE");
-        fregate30.nbPassagers=14;
-        terre.accueillirVaisseau(fregate30);
-        System.out.println("La frégate a rejeté : "+fregate30.emporterCargaison(30)+" tonnes.");
-        Vaisseau vaisseauMonde2060=new VaisseauCivil("VAISSEAU-MONDE");
+        Atmosphere atmosphereUranus = new Atmosphere();
+        atmosphereUranus.tauxHydrogene = new Float(83f);
+        atmosphereUranus.tauxHelium = new Float(15f);
+        atmosphereUranus.tauxMethane = new Float(2.5f);
+        atmosphereUranus.tauxAzote = new Float(0.0f);
+        uranus.atmosphere = atmosphereUranus;
 
-        terre.accueillirVaisseau(vaisseauMonde2060);
-        System.out.println("Le Vaisseau-Monde a rejeté : "+vaisseauMonde2060.emporterCargaison(1560)+" tonnes.");
-        System.out.println("Le Vaisseau-Monde a rejeté : "+vaisseauMonde2060.emporterCargaison(600)+" tonnes.");
+        System.out.println("L'atmosphère de Uranus est composée :");
 
+        if (uranus.atmosphere.tauxHelium != null) {
+            System.out.println("A " + uranus.atmosphere.tauxHelium + "% d'Helium.");
+        }
+        if (uranus.atmosphere.tauxHydrogene != null) {
+            System.out.println("A " + uranus.atmosphere.tauxHydrogene + "% d'Hydrogène.");
+        }
+        if (uranus.atmosphere.tauxAzote != null) {
+            System.out.println("A " + uranus.atmosphere.tauxAzote + "% d'Azote.");
+        }
+        if (uranus.atmosphere.tauxArgon != null) {
+            System.out.println("A " + uranus.atmosphere.tauxArgon + "% d'Argon.");
+        }
+        if (uranus.atmosphere.tauxDioxydeDeCarbone != null) {
+            System.out.println("A " + uranus.atmosphere.tauxDioxydeDeCarbone + "% de Dioxyde de Carbone.");
+        }
+        if (uranus.atmosphere.tauxSodium != null) {
+            System.out.println("A " + uranus.atmosphere.tauxSodium + "% de Sodium.");
+        }
+        if (uranus.atmosphere.tauxMethane != null) {
+            System.out.println("A " + uranus.atmosphere.tauxMethane + "% de Methane.");
+        }
     }
-
 }
