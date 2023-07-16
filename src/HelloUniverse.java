@@ -32,9 +32,11 @@ public class HelloUniverse {
         cargo.nbPassagers = 15;
         Vaisseau vaisseauMonde = new VaisseauCivil("VAISSEAU-MONDE");
         vaisseauMonde.nbPassagers = 79;
+        /*
+
         Vaisseau nouveauVaisseau = null;
 
-        /*System.out.println("Quel type de vaisseau souhaitez-vous manipuler ?");
+        System.out.println("Quel type de vaisseau souhaitez-vous manipuler ?");
         Scanner sc = new Scanner(System.in);
          switch(sc.nextLine()) {
              case "CHASSEUR":
