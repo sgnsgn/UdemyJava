@@ -2,23 +2,17 @@ public class VaisseauDeGuerre extends Vaisseau {
 
     boolean armesDesactivees;
 
-    public VaisseauDeGuerre(String type){
+    public VaisseauDeGuerre(TypeVaisseau type){
         this.type=type;
-        if (type.equals("CHASSEUR")){
-            tonnageMax=0;
-        }
-        else if (type.equals("FREGATE")){
-            tonnageMax=50;
-        }
-        else if (type.equals("CROISEUR")){
-            tonnageMax=100;
-        }
+        if (type==TypeVaisseau.CHASSEUR) tonnageMax = 0;
+        else if (type==TypeVaisseau.FREGATE) tonnageMax = 50;
+        else if (type==TypeVaisseau.FREGATE) tonnageMax = 100;
 
     }
 
     void attaque(Vaisseau vaisseauCible, String arme, int duree) {
         if (armesDesactivees) {
-            System.out.println("Attaque impossible, l'armement est désactivé.");
+            System.out.println("Attaque impossible, l'armement est désactivé");
         } else {
             System.out.println("Un vaisseau de type " + type + " attaque un vaisseau de type " + vaisseauCible.type + " en utilisant l'arme " + arme + " pendant " + duree + " minutes.");
             vaisseauCible.resistanceDuBouclier = 0;
@@ -27,7 +21,7 @@ public class VaisseauDeGuerre extends Vaisseau {
     }
 
     void desactiverArmes() {
-        System.out.println("Désactivation des armes d'un vaisseau de type " +type+".");
+        System.out.println("Désactivation des armes d'un vaisseau de type " + type);
         armesDesactivees = true;
     }
 
@@ -37,7 +31,7 @@ public class VaisseauDeGuerre extends Vaisseau {
     }
 
     int emporterCargaison (int cargaison){
-        if (type.equals("CHASSEUR")){
+        if (type==TypeVaisseau.CHASSEUR){
             return cargaison;
         }
         else {

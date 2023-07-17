@@ -22,36 +22,39 @@ public class HelloUniverse {
         PlaneteGazeuse neptune = new PlaneteGazeuse("Neptune");
         neptune.diametre = 49532;
 
-        Vaisseau chasseur = new VaisseauDeGuerre("CHASSEUR");
+        Vaisseau chasseur = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
         chasseur.nbPassagers = 2;
-        Vaisseau fregate = new VaisseauDeGuerre("FREGATE");
+        Vaisseau fregate = new VaisseauDeGuerre(TypeVaisseau.FREGATE);
         fregate.nbPassagers = 12;
-        Vaisseau croiseur = new VaisseauDeGuerre("CROISEUR");
+        Vaisseau croiseur = new VaisseauDeGuerre(TypeVaisseau.CROISEUR);
         croiseur.nbPassagers = 12;
-        Vaisseau cargo = new VaisseauCivil("CARGO");
+        Vaisseau cargo = new VaisseauCivil(TypeVaisseau.CARGO);
         cargo.nbPassagers = 15;
-        Vaisseau vaisseauMonde = new VaisseauCivil("VAISSEAU-MONDE");
+        Vaisseau vaisseauMonde = new VaisseauCivil(TypeVaisseau.VAISSEAUMONDE);
         vaisseauMonde.nbPassagers = 79;
-        /*
 
         Vaisseau nouveauVaisseau = null;
 
         System.out.println("Quel type de vaisseau souhaitez-vous manipuler ?");
         Scanner sc = new Scanner(System.in);
-         switch(sc.nextLine()) {
-             case "CHASSEUR":
+
+        String vaisseauSelectionne = sc.nextLine();
+        TypeVaisseau typeVaisseau = TypeVaisseau.valueOf(vaisseauSelectionne);
+
+         switch(typeVaisseau) {
+             case CHASSEUR:
                  nouveauVaisseau = chasseur;
                  break;
-             case "FREGATE":
+             case FREGATE:
                  nouveauVaisseau = fregate;
                  break;
-             case "CROISEUR":
+             case CROISEUR:
                  nouveauVaisseau = croiseur;
                  break;
-             case "CARGO":
+             case CARGO:
                  nouveauVaisseau = cargo;
                  break;
-             case "VAISSEAU-MONDE":
+             case VAISSEAUMONDE:
                  nouveauVaisseau = vaisseauMonde;
                  break;
          }
@@ -87,7 +90,6 @@ public class HelloUniverse {
         System.out.println("Quel tonnage souhaitez-vous emporter ?");
         int tonnageChoisi = sc.nextInt();
         System.out.println("Le " + Objects.requireNonNull(nouveauVaisseau).type + " a rejeté : "+nouveauVaisseau.emporterCargaison(tonnageChoisi)+" tonnes.");
-         */
 
         Atmosphere atmosphereUranus = new Atmosphere();
         atmosphereUranus.tauxHydrogene = new Float(83f);
