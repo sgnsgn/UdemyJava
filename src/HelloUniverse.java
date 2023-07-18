@@ -5,13 +5,13 @@ public class HelloUniverse {
 
     public static void main(String... args) {
 
-        PlaneteTellurique mercure = new PlaneteTellurique("Mercure");
+        PlaneteTellurique mercure = new PlaneteTellurique("Mercure",5);
         mercure.diametre = 4880;
-        PlaneteTellurique venus = new PlaneteTellurique("Venus");
+        PlaneteTellurique venus = new PlaneteTellurique("Venus",2);
         venus.diametre = 12100;
-        PlaneteTellurique terre = new PlaneteTellurique("Terre");
+        PlaneteTellurique terre = new PlaneteTellurique("Terre",20);
         terre.diametre = 12756;
-        PlaneteTellurique mars = new PlaneteTellurique("Mars");
+        PlaneteTellurique mars = new PlaneteTellurique("Mars",5);
         mars.diametre = 6792;
         PlaneteGazeuse jupiter = new PlaneteGazeuse("Jupiter");
         jupiter.diametre = 142984;
@@ -35,62 +35,70 @@ public class HelloUniverse {
 
         Vaisseau nouveauVaisseau = null;
 
-        System.out.println("Quel type de vaisseau souhaitez-vous manipuler ?");
-        Scanner sc = new Scanner(System.in);
+        boolean repeter = true;
 
-        String vaisseauSelectionne = sc.nextLine();
-        TypeVaisseau typeVaisseau = TypeVaisseau.valueOf(vaisseauSelectionne);
+        while(repeter) {
+            System.out.println("Quel type de vaisseau souhaitez-vous manipuler ?");
+            Scanner sc = new Scanner(System.in);
 
-         switch(typeVaisseau) {
-             case CHASSEUR:
-                 nouveauVaisseau = chasseur;
-                 break;
-             case FREGATE:
-                 nouveauVaisseau = fregate;
-                 break;
-             case CROISEUR:
-                 nouveauVaisseau = croiseur;
-                 break;
-             case CARGO:
-                 nouveauVaisseau = cargo;
-                 break;
-             case VAISSEAUMONDE:
-                 nouveauVaisseau = vaisseauMonde;
-                 break;
-         }
+            String vaisseauSelectionne = sc.nextLine();
+            TypeVaisseau typeVaisseau = TypeVaisseau.valueOf(vaisseauSelectionne);
 
-        System.out.println("Sur quelle planete souhaitez-vous atterir ?");
-        switch(sc.nextLine()) {
-            case "Mercure":
-                mercure.accueillirVaisseau(nouveauVaisseau);
-                break;
-            case "Venus":
-                venus.accueillirVaisseau(nouveauVaisseau);
-                break;
-            case "Terre":
-                terre.accueillirVaisseau(nouveauVaisseau);
-                break;
-            case "Mars":
-                mars.accueillirVaisseau(nouveauVaisseau);
-                break;
-            case "Jupiter":
-                System.out.println("Impossible d'accueillir des vaisseaux sur Jupiter");
-                break;
-            case "Saturne":
-                System.out.println("Impossible d'accueillir des vaisseaux sur Saturne");
-                break;
-            case "Uranus":
-                System.out.println("Impossible d'accueillir des vaisseaux sur Uranus");
-                break;
-            case "Neptune":
-                System.out.println("Impossible d'accueillir des vaisseaux sur Neptune");
-                break;
+            switch (typeVaisseau) {
+                case CHASSEUR:
+                    nouveauVaisseau = chasseur;
+                    break;
+                case FREGATE:
+                    nouveauVaisseau = fregate;
+                    break;
+                case CROISEUR:
+                    nouveauVaisseau = croiseur;
+                    break;
+                case CARGO:
+                    nouveauVaisseau = cargo;
+                    break;
+                case VAISSEAUMONDE:
+                    nouveauVaisseau = vaisseauMonde;
+                    break;
+            }
+
+            System.out.println("Sur quelle planete souhaitez-vous atterir ?");
+            switch (sc.nextLine()) {
+                case "Mercure":
+                    mercure.accueillirVaisseau(nouveauVaisseau);
+                    break;
+                case "Venus":
+                    venus.accueillirVaisseau(nouveauVaisseau);
+                    break;
+                case "Terre":
+                    terre.accueillirVaisseau(nouveauVaisseau);
+                    break;
+                case "Mars":
+                    mars.accueillirVaisseau(nouveauVaisseau);
+                    break;
+                case "Jupiter":
+                    System.out.println("Impossible d'accueillir des vaisseaux sur Jupiter");
+                    break;
+                case "Saturne":
+                    System.out.println("Impossible d'accueillir des vaisseaux sur Saturne");
+                    break;
+                case "Uranus":
+                    System.out.println("Impossible d'accueillir des vaisseaux sur Uranus");
+                    break;
+                case "Neptune":
+                    System.out.println("Impossible d'accueillir des vaisseaux sur Neptune");
+                    break;
+            }
+
+            System.out.println("Quel tonnage souhaitez-vous emporter ?");
+            int tonnageChoisi = sc.nextInt();
+            System.out.println("Le " + nouveauVaisseau.type + " a rejeté : " + nouveauVaisseau.emporterCargaison(tonnageChoisi) + " tonnes.");
+            sc.nextLine();
+            System.out.println("Voulez-vous recommencer oui/non ?");
+            String reponse = sc.nextLine();
+            if(reponse.equals("non")) repeter=false;
         }
-
-        System.out.println("Quel tonnage souhaitez-vous emporter ?");
-        int tonnageChoisi = sc.nextInt();
-        System.out.println("Le " + Objects.requireNonNull(nouveauVaisseau).type + " a rejeté : "+nouveauVaisseau.emporterCargaison(tonnageChoisi)+" tonnes.");
-
+        /*
         Atmosphere atmosphereUranus = new Atmosphere();
         atmosphereUranus.tauxHydrogene = new Float(83f);
         atmosphereUranus.tauxHelium = new Float(15f);
@@ -121,5 +129,6 @@ public class HelloUniverse {
         if (uranus.atmosphere.tauxMethane != null) {
             System.out.println("A " + uranus.atmosphere.tauxMethane + "% de Methane.");
         }
+        */
     }
 }
