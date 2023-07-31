@@ -33,7 +33,18 @@ public class HelloUniverse {
         Vaisseau vaisseauMonde = new VaisseauCivil(TypeVaisseau.VAISSEAUMONDE);
         vaisseauMonde.nbPassagers = 79;
 
+        Vaisseau chasseur1 = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
+        chasseur1.nbPassagers = 2;
+        Vaisseau chasseur2 = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
+        chasseur2.nbPassagers = 1;
+        Vaisseau cargo1 = new VaisseauCivil(TypeVaisseau.CARGO);
+        cargo1.nbPassagers = 8;
+
+        terre.accueillirVaisseaux(chasseur1, chasseur2, cargo1);
+
+        /*
         Vaisseau nouveauVaisseau = null;
+
 
         boolean repeter = true;
 
@@ -65,16 +76,16 @@ public class HelloUniverse {
             System.out.println("Sur quelle planete souhaitez-vous atterir ?");
             switch (sc.nextLine()) {
                 case "Mercure":
-                    mercure.accueillirVaisseau(nouveauVaisseau);
+                    mercure.accueillirVaisseaux(nouveauVaisseau);
                     break;
                 case "Venus":
-                    venus.accueillirVaisseau(nouveauVaisseau);
+                    venus.accueillirVaisseaux(nouveauVaisseau);
                     break;
                 case "Terre":
-                    terre.accueillirVaisseau(nouveauVaisseau);
+                    terre.accueillirVaisseaux(nouveauVaisseau);
                     break;
                 case "Mars":
-                    mars.accueillirVaisseau(nouveauVaisseau);
+                    mars.accueillirVaisseaux(nouveauVaisseau);
                     break;
                 case "Jupiter":
                     System.out.println("Impossible d'accueillir des vaisseaux sur Jupiter");

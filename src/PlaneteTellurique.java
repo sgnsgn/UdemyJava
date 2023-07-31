@@ -6,35 +6,35 @@ public class PlaneteTellurique extends Planete implements Habitable {
     Vaisseau[] vaisseauxAccostes;
     int compteur=0;
 
+
     public PlaneteTellurique(String nom, int tailleBaieAccostage) {
         super(nom);
         this.tailleBaieAccostage = tailleBaieAccostage;
         this.vaisseauxAccostes = new Vaisseau[tailleBaieAccostage];
     }
 
-    public Vaisseau accueillirVaisseau(Vaisseau nouveauVaisseau) {
+    @Override
+    public void accueillirVaisseaux(Vaisseau... nouveauxVaisseaux) {
 
-        if (nouveauVaisseau instanceof VaisseauDeGuerre) {
-            ((VaisseauDeGuerre) nouveauVaisseau).desactiverArmes();
-        }
-
-        totalVisiteurs += nouveauVaisseau.nbPassagers;
-
-        if(restePlaceDisponible()){
-            vaisseauxAccostes[compteur] = nouveauVaisseau;
-            compteur+=1;
-            return nouveauVaisseau;
-
-        }
-        else {
-            System.out.println("Le vaisseau ne peut pas se poser sur la planète par manque de place dans la baie.");
-            for (int i=0; i < vaisseauxAccostes.length;i++)
-            {
-                System.out.println("Un vaisseau de type " + vaisseauxAccostes[i].type + " est déja présent");
+        for (int i = 0;i< nouveauxVaisseaux.length;i++) {
+            if (nouveauxVaisseaux[i] instanceof VaisseauDeGuerre) {
+                ((VaisseauDeGuerre) nouveauxVaisseaux[i]).desactiverArmes();
             }
-            return null;
-        }
 
+            totalVisiteurs += nouveauxVaisseaux[i].nbPassagers;
+
+            if (restePlaceDisponible()) {
+                vaisseauxAccostes[compteur] = nouveauxVaisseaux[i];
+                compteur += 1;
+
+            } else {
+                System.out.println("Le vaisseau ne peut pas se poser sur la planète par manque de place dans la baie.");
+                for (int j = 0; j < vaisseauxAccostes.length; j++) {
+                    System.out.println("Un vaisseau de type " + vaisseauxAccostes[j].type + " est déja présent");
+                }
+            }
+
+        }
     }
 
     boolean restePlaceDisponible() {
@@ -45,5 +45,6 @@ public class PlaneteTellurique extends Planete implements Habitable {
         }
         return false;
     }
+
 }
 
