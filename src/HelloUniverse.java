@@ -1,17 +1,16 @@
-import java.util.Objects;
 import java.util.Scanner;
 
 public class HelloUniverse {
 
     public static void main(String... args) {
 
-        PlaneteTellurique mercure = new PlaneteTellurique("Mercure",5);
+        PlaneteTellurique mercure = new PlaneteTellurique("Mercure", 1);
         mercure.diametre = 4880;
-        PlaneteTellurique venus = new PlaneteTellurique("Venus",2);
+        PlaneteTellurique venus = new PlaneteTellurique("Venus", 2);
         venus.diametre = 12100;
-        PlaneteTellurique terre = new PlaneteTellurique("Terre",20);
+        PlaneteTellurique terre = new PlaneteTellurique("Terre", 100);
         terre.diametre = 12756;
-        PlaneteTellurique mars = new PlaneteTellurique("Mars",5);
+        PlaneteTellurique mars = new PlaneteTellurique("Mars", 5);
         mars.diametre = 6792;
         PlaneteGazeuse jupiter = new PlaneteGazeuse("Jupiter");
         jupiter.diametre = 142984;
@@ -23,123 +22,104 @@ public class HelloUniverse {
         neptune.diametre = 49532;
 
         Vaisseau chasseur = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
-        chasseur.nbPassagers = 2;
-        Vaisseau fregate = new VaisseauDeGuerre(TypeVaisseau.FREGATE);
-        fregate.nbPassagers = 12;
+        chasseur.nbPassagers = 3;
+        chasseur.blindage = 156;
+        chasseur.resistanceDuBouclier = 2;
+
         Vaisseau croiseur = new VaisseauDeGuerre(TypeVaisseau.CROISEUR);
-        croiseur.nbPassagers = 12;
+        croiseur.nbPassagers = 35;
+        croiseur.blindage = 851;
+        croiseur.resistanceDuBouclier = 25;
+
+        Vaisseau fregate = new VaisseauDeGuerre(TypeVaisseau.FREGATE);
+        fregate.nbPassagers = 100;
+        fregate.blindage = 542;
+        fregate.resistanceDuBouclier = 50;
+
         Vaisseau cargo = new VaisseauCivil(TypeVaisseau.CARGO);
-        cargo.nbPassagers = 15;
+        cargo.nbPassagers = 10000;
+        cargo.blindage = 1520;
+        cargo.resistanceDuBouclier = 20;
+
         Vaisseau vaisseauMonde = new VaisseauCivil(TypeVaisseau.VAISSEAUMONDE);
-        vaisseauMonde.nbPassagers = 79;
+        vaisseauMonde.nbPassagers = 10000;
+        vaisseauMonde.blindage = 4784;
+        vaisseauMonde.resistanceDuBouclier = 30;
 
-        Vaisseau chasseur1 = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
-        chasseur1.nbPassagers = 2;
         Vaisseau chasseur2 = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
-        chasseur2.nbPassagers = 1;
-        Vaisseau cargo1 = new VaisseauCivil(TypeVaisseau.CARGO);
-        cargo1.nbPassagers = 8;
+        chasseur2.nbPassagers = 4;
+        chasseur2.blindage = 156;
+        chasseur2.resistanceDuBouclier = 2;
+        Vaisseau chasseur3 = new VaisseauDeGuerre(TypeVaisseau.CHASSEUR);
+        chasseur3.nbPassagers = 5;
+        chasseur3.blindage = 156;
+        chasseur3.resistanceDuBouclier = 2;
+        Vaisseau cargo2 = new VaisseauCivil(TypeVaisseau.CARGO);
+        cargo2.nbPassagers = 10001;
+        cargo2.blindage = 1520;
+        cargo2.resistanceDuBouclier = 20;
+        terre.accueillirVaisseaux(chasseur2,chasseur3,cargo2);
 
-        terre.accueillirVaisseaux(chasseur1, chasseur2, cargo1);
-
-        /*
-        Vaisseau nouveauVaisseau = null;
-
-
-        boolean repeter = true;
-
-        while(repeter) {
-            System.out.println("Quel type de vaisseau souhaitez-vous manipuler ?");
-            Scanner sc = new Scanner(System.in);
-
-            String vaisseauSelectionne = sc.nextLine();
-            TypeVaisseau typeVaisseau = TypeVaisseau.valueOf(vaisseauSelectionne);
-
+        Scanner sc = new Scanner(System.in);
+        boolean recommencer = true;
+        while (recommencer) {
+            System.out.println("Quel vaisseau souhaitez vous manipuler​ : " + TypeVaisseau.CHASSEUR.name() + ", " + TypeVaisseau.FREGATE.name() + ", " + TypeVaisseau.CROISEUR.name() + ", " + TypeVaisseau.CARGO.name() + " ou " + TypeVaisseau.VAISSEAUMONDE.name() + " ?");
+            String typeVaisseauString = sc.nextLine();
+            TypeVaisseau typeVaisseau = TypeVaisseau.valueOf(typeVaisseauString);
+            Vaisseau vaisseauSelectionne = null;
             switch (typeVaisseau) {
                 case CHASSEUR:
-                    nouveauVaisseau = chasseur;
+                    vaisseauSelectionne = chasseur;
                     break;
                 case FREGATE:
-                    nouveauVaisseau = fregate;
+                    vaisseauSelectionne = fregate;
                     break;
                 case CROISEUR:
-                    nouveauVaisseau = croiseur;
+                    vaisseauSelectionne = croiseur;
                     break;
                 case CARGO:
-                    nouveauVaisseau = cargo;
+                    vaisseauSelectionne = cargo;
                     break;
                 case VAISSEAUMONDE:
-                    nouveauVaisseau = vaisseauMonde;
+                    vaisseauSelectionne = vaisseauMonde;
                     break;
             }
 
-            System.out.println("Sur quelle planete souhaitez-vous atterir ?");
-            switch (sc.nextLine()) {
+            System.out.println("Sur quelle planète tellurique du systeme solaire voulez-vous vous poser : Mercure, Venus, Terre ou Mars ?");
+            String nomPlanete = sc.nextLine();
+            PlaneteTellurique planeteSelectionnee = null;
+            switch (nomPlanete) {
                 case "Mercure":
-                    mercure.accueillirVaisseaux(nouveauVaisseau);
+                    planeteSelectionnee = mercure;
                     break;
                 case "Venus":
-                    venus.accueillirVaisseaux(nouveauVaisseau);
+                    planeteSelectionnee = venus;
                     break;
                 case "Terre":
-                    terre.accueillirVaisseaux(nouveauVaisseau);
+                    planeteSelectionnee = terre;
                     break;
                 case "Mars":
-                    mars.accueillirVaisseaux(nouveauVaisseau);
+                    planeteSelectionnee = mars;
                     break;
-                case "Jupiter":
-                    System.out.println("Impossible d'accueillir des vaisseaux sur Jupiter");
-                    break;
-                case "Saturne":
-                    System.out.println("Impossible d'accueillir des vaisseaux sur Saturne");
-                    break;
-                case "Uranus":
-                    System.out.println("Impossible d'accueillir des vaisseaux sur Uranus");
-                    break;
-                case "Neptune":
-                    System.out.println("Impossible d'accueillir des vaisseaux sur Neptune");
-                    break;
+
             }
 
             System.out.println("Quel tonnage souhaitez-vous emporter ?");
-            int tonnageChoisi = sc.nextInt();
-            System.out.println("Le " + nouveauVaisseau.type + " a rejeté : " + nouveauVaisseau.emporterCargaison(tonnageChoisi) + " tonnes.");
+            int tonnageSouhaite = sc.nextInt();
+
+            if (planeteSelectionnee.restePlaceDisponible(vaisseauSelectionne)) {
+                planeteSelectionnee.accueillirVaisseaux(vaisseauSelectionne);
+                System.out.println("Le vaisseau a rejeté : " + vaisseauSelectionne.emporterCargaison(tonnageSouhaite) + " tonnes.");
+            } else {
+                System.out.println("Le vaisseau ne peut pas se poser sur la planète par manque de place dans la baie.");
+            }
+
             sc.nextLine();
             System.out.println("Voulez-vous recommencer oui/non ?");
-            String reponse = sc.nextLine();
-            if(reponse.equals("non")) repeter=false;
-        }
-        /*
-        Atmosphere atmosphereUranus = new Atmosphere();
-        atmosphereUranus.tauxHydrogene = new Float(83f);
-        atmosphereUranus.tauxHelium = new Float(15f);
-        atmosphereUranus.tauxMethane = new Float(2.5f);
-        atmosphereUranus.tauxAzote = new Float(0.0f);
-        uranus.atmosphere = atmosphereUranus;
 
-        System.out.println("L'atmosphère de Uranus est composée :");
+            recommencer = sc.nextLine().equals("oui");
 
-        if (uranus.atmosphere.tauxHelium != null) {
-            System.out.println("A " + uranus.atmosphere.tauxHelium + "% d'Helium.");
         }
-        if (uranus.atmosphere.tauxHydrogene != null) {
-            System.out.println("A " + uranus.atmosphere.tauxHydrogene + "% d'Hydrogène.");
-        }
-        if (uranus.atmosphere.tauxAzote != null) {
-            System.out.println("A " + uranus.atmosphere.tauxAzote + "% d'Azote.");
-        }
-        if (uranus.atmosphere.tauxArgon != null) {
-            System.out.println("A " + uranus.atmosphere.tauxArgon + "% d'Argon.");
-        }
-        if (uranus.atmosphere.tauxDioxydeDeCarbone != null) {
-            System.out.println("A " + uranus.atmosphere.tauxDioxydeDeCarbone + "% de Dioxyde de Carbone.");
-        }
-        if (uranus.atmosphere.tauxSodium != null) {
-            System.out.println("A " + uranus.atmosphere.tauxSodium + "% de Sodium.");
-        }
-        if (uranus.atmosphere.tauxMethane != null) {
-            System.out.println("A " + uranus.atmosphere.tauxMethane + "% de Methane.");
-        }
-        */
     }
+
 }
